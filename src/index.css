@@ -85,6 +85,12 @@ body {
   background: white;
 }
 
+.btn-outline-danger {
+  border-color: #ef4444;
+  color: #ef4444;
+  background: white;
+}
+
 /* Main Split Layout */
 .app-main {
   display: flex;
@@ -127,23 +133,15 @@ body {
   fill-opacity: 0 !important;
 }
 
-.blockly-footer {
+.panel-footer {
   padding: 10px;
   background: white;
   border-top: 1px solid var(--border-color);
+  z-index: 10;
   display: flex;
-  justify-content: space-between;
-}
-
-.btn-gray {
-  background-color: #6b7280;
-  color: white;
-}
-
-.btn-outline-danger {
-  border-color: #ef4444;
-  color: #ef4444;
-  background: white;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
 }
 
 /* Chat Preview */

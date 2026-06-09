@@ -160,12 +160,8 @@ const BlocklyWorkspace = forwardRef(({ onSystemPromptChange }, ref) => {
     <div className="blockly-wrapper">
       <div 
         ref={blocklyDiv} 
-        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: '50px' }} 
+        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} 
       />
-      <div className="blockly-footer" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '10px', background: 'white', borderTop: '1px solid var(--border-color)', display: 'flex', justifyContent: 'flex-start', gap: '10px' }}>
-        <button className="btn btn-gray" onClick={handleGenerateRandom}>Tạo Chatbot Ngẫu nhiên</button>
-        <button className="btn btn-outline-danger" onClick={handleReset}>Xóa Không gian làm việc</button>
-      </div>
     </div>
   );
 });
