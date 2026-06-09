@@ -26,9 +26,6 @@ const ChatPreview = ({ messages, onSendMessage, onClearChat, isTyping, systemPro
   return (
     <div className="chat-preview-container">
       <div className="chat-header-actions" style={{ gap: '10px' }}>
-        <button className="btn btn-outline-secondary" style={{ padding: '6px 12px' }} onClick={() => alert("System Prompt hiện tại:\\n\\n" + systemPrompt)}>
-          <Info size={14} /> System Prompt
-        </button>
         <button className="btn btn-outline-primary" style={{ padding: '6px 12px' }} onClick={onClearChat}>
           <Plus size={14} /> Cuộc trò chuyện mới
         </button>
