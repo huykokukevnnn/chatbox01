@@ -137,17 +137,31 @@ export const registerGenerators = (generator) => {
     generator.forBlock = {};
   }
   
+  // Đảm bảo các khối được quét nối tiếp nhau một cách an toàn
+  generator.scrub_ = function(block, code, opt_thisOnly) {
+    let nextCode = '';
+    if (block.nextConnection && block.nextConnection.targetBlock()) {
+      nextCode = generator.blockToCode(block.nextConnection.targetBlock());
+    }
+    return code + nextCode;
+  };
+
+  const getInnerCode = (block, inputName) => {
+    const targetBlock = block.getInputTargetBlock(inputName);
+    return targetBlock ? generator.blockToCode(targetBlock) : '';
+  };
+
   // Wrappers Generators
   generator.forBlock['config_header'] = function() { return ""; };
-  generator.forBlock['wrapper_persona'] = function(block) { return generator.statementToCode(block, 'DO') || ''; };
-  generator.forBlock['wrapper_users'] = function(block) { return generator.statementToCode(block, 'DO') || ''; };
-  generator.forBlock['wrapper_tone'] = function(block) { return generator.statementToCode(block, 'DO') || ''; };
-  generator.forBlock['wrapper_theories'] = function(block) { return generator.statementToCode(block, 'DO') || ''; };
-  generator.forBlock['wrapper_process'] = function(block) { return generator.statementToCode(block, 'DO') || ''; };
-  generator.forBlock['wrapper_limitations'] = function(block) { return generator.statementToCode(block, 'DO') || ''; };
+  generator.forBlock['wrapper_persona'] = function(block) { return getInnerCode(block, 'DO'); };
+  generator.forBlock['wrapper_users'] = function(block) { return getInnerCode(block, 'DO'); };
+  generator.forBlock['wrapper_tone'] = function(block) { return getInnerCode(block, 'DO'); };
+  generator.forBlock['wrapper_theories'] = function(block) { return getInnerCode(block, 'DO'); };
+  generator.forBlock['wrapper_process'] = function(block) { return getInnerCode(block, 'DO'); };
+  generator.forBlock['wrapper_limitations'] = function(block) { return getInnerCode(block, 'DO'); };
 
-  const mapSimple = (type, outputText) => { generator.forBlock[type] = function() { return outputText + "\\n"; }; };
-  const mapInput = (type, prefix, fieldName) => { generator.forBlock[type] = function(block) { return prefix + block.getFieldValue(fieldName) + "\\n"; }; };
+  const mapSimple = (type, outputText) => { generator.forBlock[type] = function() { return outputText + "\n"; }; };
+  const mapInput = (type, prefix, fieldName) => { generator.forBlock[type] = function(block) { return prefix + (block.getFieldValue(fieldName) || "") + "\n"; }; };
 
   // Persona, Users, Tone, Theories (from previous step)
   mapInput('persona_custom', 'Hãy đóng vai: ', 'TEXT');

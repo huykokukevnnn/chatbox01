@@ -39,8 +39,12 @@ const ChatPreview = ({ messages, onSendMessage, onClearChat, isTyping }) => {
             <p style={{ color: 'var(--text-secondary)' }}>Thực hiện thay đổi ở bên trái và thử nghiệm<br/>chúng ở bên này.</p>
             
             <div className="suggestions">
-              <div className="suggestion-chip">
-                Bạn có thể giải thích sự khác biệt giữa 'ser' và 'estar' với các ví dụ không? Tôi luôn bối rối về việc khi nào nên sử dụng chúng.
+              <div 
+                className="suggestion-chip"
+                style={{ borderRadius: '24px', cursor: 'pointer', textAlign: 'center', transition: 'background 0.2s' }}
+                onClick={() => onSendMessage("Bạn có thể giúp gì cho tôi?")}
+              >
+                Bạn có thể giúp gì cho tôi?
               </div>
             </div>
           </div>

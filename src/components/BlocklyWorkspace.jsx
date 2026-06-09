@@ -80,14 +80,12 @@ const BlocklyWorkspace = forwardRef(({ onSystemPromptChange }, ref) => {
       // Listen to changes to generate code
       workspace.current.addChangeListener(() => {
         try {
-          let generatedPrompt = "Hãy giao tiếp hoàn toàn bằng Tiếng Việt.\\n";
+          let generatedPrompt = "[QUY TẮC CỐT LÕI]: TUYỆT ĐỐI KHÔNG TỰ BỊA RA TÊN RIÊNG CHO BẢN THÂN (ví dụ không xưng là Thầy Hoàng, Cô Mai...) VÀ KHÔNG BỊA TÊN TRƯỜNG HỌC/CƠ QUAN. BẠN LÀ MỘT TRÍ TUỆ NHÂN TẠO ẨN DANH ĐANG ĐÓNG VAI THEO CHỨC DANH. HÃY GIAO TIẾP HOÀN TOÀN BẰNG TIẾNG VIỆT.\n";
+          generatedPrompt += "Nếu người dùng hỏi 'Bạn là ai?' hoặc hỏi về danh tính của bạn, bạn PHẢI trả lời bằng cách liệt kê rõ ràng các thông tin cấu hình hiện tại của bạn dựa vào các thiết lập bên dưới (Bao gồm: Vai trò, Đối tượng người dùng, Giọng điệu, Lý thuyết, Quy trình và Giới hạn).\n\n[CẤU HÌNH CHI TIẾT]:\n";
           
-          // Tạo code từ toàn bộ workspace thay vì chỉ getTopBlocks
+          // Tạo code từ toàn bộ workspace
           generatedPrompt += javascriptGenerator.workspaceToCode(workspace.current) || "";
           
-          // Thêm quy tắc ép buộc không tự đặt tên
-          generatedPrompt += "\n[QUY TẮC BẮT BUỘC]: TUYỆT ĐỐI KHÔNG TỰ BỊA ĐẶT TÊN RIÊNG hay TÊN TRƯỜNG HỌC (ví dụ: không xưng là Nguyễn Văn A, không dùng trường Phổ thông XYZ). CHỈ XƯNG HÔ THEO ĐÚNG CHỨC DANH NGHỀ NGHIỆP.\n";
-
           onSystemPromptChange(generatedPrompt);
         } catch (error) {
           onSystemPromptChange("ERROR GENERATING PROMPT:\\n" + error.message + "\\n" + error.stack);
@@ -164,7 +162,7 @@ const BlocklyWorkspace = forwardRef(({ onSystemPromptChange }, ref) => {
         ref={blocklyDiv} 
         style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: '50px' }} 
       />
-      <div className="blockly-footer" style={{ position: 'absolute', bottom: 0, width: '100%' }}>
+      <div className="blockly-footer" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '10px', background: 'white', borderTop: '1px solid var(--border-color)', display: 'flex', justifyContent: 'flex-start', gap: '10px' }}>
         <button className="btn btn-gray" onClick={handleGenerateRandom}>Tạo Chatbot Ngẫu nhiên</button>
         <button className="btn btn-outline-danger" onClick={handleReset}>Xóa Không gian làm việc</button>
       </div>
