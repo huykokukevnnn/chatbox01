@@ -93,6 +93,7 @@ function App() {
         <div className="panel right-panel">
           <ChatPreview 
             messages={messages} 
+            systemPrompt={systemPrompt}
             onSendMessage={handleSendMessage} 
             onClearChat={handleClearChat}
             isTyping={isTyping} 
