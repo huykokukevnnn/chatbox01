@@ -57,7 +57,7 @@ export const getBlockDefinitions = () => {
     },
 
     // --- PERSONA (Màu Xanh lam: 230) ---
-    { "type": "persona_custom", "message0": "Đóng vai: %1", "args0": [{ "type": "field_input", "name": "TEXT", "text": "Một giáo viên trung học" }], "colour": 230, "previousStatement": "Persona", "nextStatement": "Persona" },
+    { "type": "persona_custom", "message0": "Đóng vai: %1 %2", "args0": [{ "type": "input_dummy" }, { "type": "field_multilinetext", "name": "TEXT", "text": "Một giáo viên trung học" }], "colour": 230, "previousStatement": "Persona", "nextStatement": "Persona" },
     { "type": "persona_science_whiz", "message0": "🧪 Chuyên gia Khoa học", "colour": 230, "previousStatement": "Persona", "nextStatement": "Persona" },
     { "type": "persona_pop_culture", "message0": "🎤 Bậc thầy Văn hóa Đại chúng", "colour": 230, "previousStatement": "Persona", "nextStatement": "Persona" },
     { "type": "persona_fitness", "message0": "🏋️ Đam mê Thể hình", "colour": 230, "previousStatement": "Persona", "nextStatement": "Persona" },
@@ -69,7 +69,7 @@ export const getBlockDefinitions = () => {
     { "type": "persona_spy", "message0": "🕵️ Điệp viên Anh quốc", "colour": 230, "previousStatement": "Persona", "nextStatement": "Persona" },
 
     // --- USERS (Màu Xanh lá: 120) ---
-    { "type": "users_custom", "message0": "Đối tượng người dùng: %1", "args0": [{ "type": "field_input", "name": "TEXT", "text": "Học sinh tiểu học" }], "colour": 120, "previousStatement": "Users", "nextStatement": "Users" },
+    { "type": "users_custom", "message0": "Đối tượng người dùng: %1 %2", "args0": [{ "type": "input_dummy" }, { "type": "field_multilinetext", "name": "TEXT", "text": "Học sinh tiểu học" }], "colour": 120, "previousStatement": "Users", "nextStatement": "Users" },
     { "type": "users_parents", "message0": "👨‍👩‍👧 Phụ huynh có con nhỏ", "colour": 120, "previousStatement": "Users", "nextStatement": "Users" },
     { "type": "users_tutoring", "message0": "📚 Học sinh cần gia sư", "colour": 120, "previousStatement": "Users", "nextStatement": "Users" },
     { "type": "users_career", "message0": "💼 Sinh viên khám phá nghề nghiệp", "colour": 120, "previousStatement": "Users", "nextStatement": "Users" },
@@ -77,7 +77,7 @@ export const getBlockDefinitions = () => {
     { "type": "users_expertise", "message0": "🎓 Trình độ chuyên môn: %1", "args0": [{ "type": "field_dropdown", "name": "LEVEL", "options": [["Người mới bắt đầu", "người mới bắt đầu"], ["Trung cấp", "trung cấp"], ["Chuyên gia", "chuyên gia"]] }], "colour": 120, "previousStatement": "Users", "nextStatement": "Users" },
 
     // --- TONE (Màu Tím: 280) ---
-    { "type": "tone_custom", "message0": "Giọng điệu: %1", "args0": [{ "type": "field_input", "name": "TEXT", "text": "Hài hước" }], "colour": 280, "previousStatement": "Tone", "nextStatement": "Tone" },
+    { "type": "tone_custom", "message0": "Giọng điệu: %1 %2", "args0": [{ "type": "input_dummy" }, { "type": "field_multilinetext", "name": "TEXT", "text": "Hài hước" }], "colour": 280, "previousStatement": "Tone", "nextStatement": "Tone" },
     { "type": "tone_warm", "message0": "☕ Giọng điệu ấm áp và chào đón", "colour": 280, "previousStatement": "Tone", "nextStatement": "Tone" },
     { "type": "tone_formal", "message0": "👔 Giọng điệu trang trọng và chuyên nghiệp", "colour": 280, "previousStatement": "Tone", "nextStatement": "Tone" },
     { "type": "tone_playful", "message0": "🐱 Giọng điệu vui vẻ và hài hước", "colour": 280, "previousStatement": "Tone", "nextStatement": "Tone" },
@@ -86,7 +86,7 @@ export const getBlockDefinitions = () => {
     { "type": "tone_direct", "message0": "🎯 Giọng điệu trực tiếp và ngắn gọn", "colour": 280, "previousStatement": "Tone", "nextStatement": "Tone" },
 
     // --- LEARNING THEORIES (Màu Nâu Nhạt: 30) ---
-    { "type": "theory_custom", "message0": "💡 Lý thuyết khác: %1", "args0": [{ "type": "field_input", "name": "TEXT", "text": "nhập lý thuyết..." }], "colour": 30, "previousStatement": "Theories", "nextStatement": "Theories" },
+    { "type": "theory_custom", "message0": "💡 Lý thuyết khác: %1 %2", "args0": [{ "type": "input_dummy" }, { "type": "field_multilinetext", "name": "TEXT", "text": "nhập lý thuyết..." }], "colour": 30, "previousStatement": "Theories", "nextStatement": "Theories" },
     { "type": "theory_constructivism", "message0": "🧠 Thuyết Kiến tạo", "colour": 30, "previousStatement": "Theories", "nextStatement": "Theories" },
     { "type": "theory_backwards", "message0": "🎯 Thiết kế ngược", "colour": 30, "previousStatement": "Theories", "nextStatement": "Theories" },
     { "type": "theory_blooms", "message0": "📚 Thang nhận thức Bloom", "colour": 30, "previousStatement": "Theories", "nextStatement": "Theories" },
@@ -120,7 +120,7 @@ export const getBlockDefinitions = () => {
     { "type": "ref_google_doc", "message0": "🔺 Google Doc: %1", "args0": [{ "type": "field_input", "name": "LINK", "text": "(dán link Google Doc)" }], "colour": 160, "previousStatement": null, "nextStatement": null },
 
     // --- ADJECTIVES (Màu Xanh Tím: 230) ---
-    { "type": "adj_custom", "message0": "✍️ Tính từ khác: %1", "args0": [{ "type": "field_input", "name": "TEXT", "text": "nhập tính từ..." }], "colour": 230, "previousStatement": null, "nextStatement": null },
+    { "type": "adj_custom", "message0": "✍️ Tính từ khác: %1 %2", "args0": [{ "type": "input_dummy" }, { "type": "field_multilinetext", "name": "TEXT", "text": "nhập tính từ..." }], "colour": 230, "previousStatement": null, "nextStatement": null },
     { "type": "adj_knowledgeable", "message0": "🧠 am hiểu", "colour": 230, "previousStatement": null, "nextStatement": null },
     { "type": "adj_experienced", "message0": "🌟 giàu kinh nghiệm", "colour": 230, "previousStatement": null, "nextStatement": null },
     { "type": "adj_friendly", "message0": "🤝 thân thiện", "colour": 230, "previousStatement": null, "nextStatement": null },

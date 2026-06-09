@@ -69,6 +69,13 @@ const BlocklyWorkspace = forwardRef(({ onSystemPromptChange }, ref) => {
         });
       };
       addDefaultBlocks();
+      
+      // Căn giữa các khối trong workspace
+      setTimeout(() => {
+        if (workspace.current) {
+          workspace.current.scrollCenter();
+        }
+      }, 100);
 
       // Listen to changes to generate code
       workspace.current.addChangeListener(() => {
@@ -78,6 +85,9 @@ const BlocklyWorkspace = forwardRef(({ onSystemPromptChange }, ref) => {
           // Tạo code từ toàn bộ workspace thay vì chỉ getTopBlocks
           generatedPrompt += javascriptGenerator.workspaceToCode(workspace.current) || "";
           
+          // Thêm quy tắc ép buộc không tự đặt tên
+          generatedPrompt += "\n[QUY TẮC BẮT BUỘC]: TUYỆT ĐỐI KHÔNG TỰ BỊA ĐẶT TÊN RIÊNG hay TÊN TRƯỜNG HỌC (ví dụ: không xưng là Nguyễn Văn A, không dùng trường Phổ thông XYZ). CHỈ XƯNG HÔ THEO ĐÚNG CHỨC DANH NGHỀ NGHIỆP.\n";
+
           onSystemPromptChange(generatedPrompt);
         } catch (error) {
           onSystemPromptChange("ERROR GENERATING PROMPT:\\n" + error.message + "\\n" + error.stack);
