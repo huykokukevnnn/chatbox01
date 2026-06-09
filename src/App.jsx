@@ -80,7 +80,7 @@ const App = () => {
   };
 
   return (
-    <div className="app-container">
+    <>
       <Header 
         onPublishClick={() => setShowPublishModal(true)}
         onGalleryClick={() => setActiveTab('library')}
@@ -119,7 +119,7 @@ const App = () => {
         onPublish={handlePublish}
         isPublishing={isPublishing}
       />
-    </div>
+    </>
   );
 };
 

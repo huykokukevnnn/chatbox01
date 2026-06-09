@@ -76,7 +76,7 @@ const BlocklyWorkspace = forwardRef(({ onSystemPromptChange }, ref) => {
           workspace.current.scrollCenter();
         }
       }, 100);
-
+      
       // Listen to changes to generate code
       workspace.current.addChangeListener(() => {
         try {
@@ -162,7 +162,7 @@ const BlocklyWorkspace = forwardRef(({ onSystemPromptChange }, ref) => {
         ref={blocklyDiv} 
         style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: '50px' }} 
       />
-      <div className="blockly-footer" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '10px', background: 'white', borderTop: '1px solid var(--border-color)', display: 'flex', justifyContent: 'flex-start', gap: '10px' }}>
+      <div className="blockly-footer" style={{ position: 'absolute', bottom: 0, width: '100%' }}>
         <button className="btn btn-gray" onClick={handleGenerateRandom}>Tạo Chatbot Ngẫu nhiên</button>
         <button className="btn btn-outline-danger" onClick={handleReset}>Xóa Không gian làm việc</button>
       </div>
