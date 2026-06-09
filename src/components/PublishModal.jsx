@@ -1,75 +1,77 @@
 import React, { useState } from 'react';
-import './Modal.css';
+import { X, Globe } from 'lucide-react';
 
-export default function PublishModal({ isOpen, onClose, onPublish }) {
-  const [name, setName] = useState('');
+const PublishModal = ({ isOpen, onClose, onPublish, isPublishing }) => {
+  const [botName, setBotName] = useState('');
+  const [authorName, setAuthorName] = useState('');
   const [description, setDescription] = useState('');
-  const [author, setAuthor] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!isOpen) return null;
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name.trim()) return;
+    if (!botName.trim() || !authorName.trim() || !description.trim()) return;
     
-    setIsSubmitting(true);
-    await onPublish({ name, description, author });
-    setIsSubmitting(false);
-    
-    // Reset form
-    setName('');
-    setDescription('');
-    setAuthor('');
-    onClose();
+    onPublish({
+      botName: botName.trim(),
+      authorName: authorName.trim(),
+      description: description.trim()
+    });
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <div className="modal-header">
-          <h2>Đăng Chatbot lên Thư viện</h2>
-          <button className="close-btn" onClick={onClose}>&times;</button>
+    <div className="publish-modal-overlay">
+      <div className="publish-modal">
+        <div className="publish-modal-header">
+          <h3><Globe size={20} style={{ marginRight: '8px', verticalAlign: 'middle' }}/> Đăng lên Thư viện</h3>
+          <button className="btn-close" onClick={onClose} disabled={isPublishing}>
+            <X size={20} />
+          </button>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="publish-modal-content">
           <div className="form-group">
-            <label>Tên Chatbot *</label>
+            <label>Tên Chatbot</label>
             <input 
               type="text" 
-              value={name} 
-              onChange={e => setName(e.target.value)} 
-              placeholder="VD: Gia sư Toán vui tính"
+              placeholder="VD: Giáo viên Tiếng Anh Vui Tính" 
+              value={botName}
+              onChange={e => setBotName(e.target.value)}
+              disabled={isPublishing}
               required 
-            />
-          </div>
-          <div className="form-group">
-            <label>Mô tả ngắn gọn</label>
-            <textarea 
-              value={description} 
-              onChange={e => setDescription(e.target.value)} 
-              placeholder="Chatbot này giúp bạn làm gì..."
-              rows={3}
             />
           </div>
           <div className="form-group">
             <label>Tên tác giả</label>
             <input 
               type="text" 
-              value={author} 
-              onChange={e => setAuthor(e.target.value)} 
-              placeholder="Để trống nếu muốn ẩn danh"
+              placeholder="Tên hoặc biệt danh của bạn" 
+              value={authorName}
+              onChange={e => setAuthorName(e.target.value)}
+              disabled={isPublishing}
+              required 
             />
           </div>
-          <div className="modal-footer">
-            <button type="button" className="btn btn-outline-secondary" onClick={onClose} disabled={isSubmitting}>
-              Hủy
-            </button>
-            <button type="submit" className="btn btn-success" disabled={isSubmitting || !name.trim()}>
-              {isSubmitting ? 'Đang đăng...' : 'Đăng lên Thư viện'}
+          <div className="form-group">
+            <label>Mô tả ngắn</label>
+            <textarea 
+              placeholder="Chatbot này giỏi việc gì? Dùng cho đối tượng nào?" 
+              value={description}
+              onChange={e => setDescription(e.target.value)}
+              disabled={isPublishing}
+              rows={3}
+              required 
+            />
+          </div>
+          <div className="publish-modal-footer">
+            <button type="button" className="btn btn-outline-secondary" onClick={onClose} disabled={isPublishing}>Hủy</button>
+            <button type="submit" className="btn btn-primary" disabled={!botName || !authorName || !description || isPublishing}>
+              {isPublishing ? 'Đang đăng...' : 'Đăng lên Thư viện'}
             </button>
           </div>
         </form>
       </div>
     </div>
   );
-}
+};
+
+export default PublishModal;
