@@ -39,14 +39,10 @@ const App = () => {
   };
 
   const handleClearWorkspace = () => {
-    if (workspaceRef.current && window.confirm("Bạn có chắc chắn muốn xóa toàn bộ không gian làm việc?")) {
-      workspaceRef.current.clearWorkspace();
-    }
-  };
-
-  const handleGenerateRandom = () => {
-    if (workspaceRef.current) {
-      workspaceRef.current.generateRandomConfig();
+    if (workspaceRef.current && window.confirm("Bạn có chắc chắn muốn tạo Bot mới (xóa toàn bộ không gian làm việc)?")) {
+      workspaceRef.current.resetWorkspace();
+      setSystemPrompt('');
+      handleClearChat();
     }
   };
 
@@ -55,7 +51,7 @@ const App = () => {
     
     setIsPublishing(true);
     try {
-      const state = workspaceRef.current.getWorkspaceState();
+      const state = workspaceRef.current.getWorkspaceData();
       await saveChatbotToLibrary({
         ...botInfo,
         workspaceState: state
@@ -74,7 +70,7 @@ const App = () => {
     setActiveTab('builder');
     setTimeout(() => {
       if (workspaceRef.current) {
-        workspaceRef.current.loadWorkspaceState(state);
+        workspaceRef.current.loadWorkspaceData(state);
       }
     }, 100);
   };
