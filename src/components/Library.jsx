@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchCommunityChatbots } from '../services/firebaseService';
 import { Download, RefreshCw, User, AlignLeft } from 'lucide-react';
+import { SEED_BOTS } from '../services/databaseService';
 
 const Library = ({ onSelectBot, onBack }) => {
   const [bots, setBots] = useState([]);
@@ -9,8 +10,19 @@ const Library = ({ onSelectBot, onBack }) => {
   const loadBots = async () => {
     setLoading(true);
     try {
-      const data = await fetchCommunityChatbots();
-      setBots(data);
+      const firebaseBots = await fetchCommunityChatbots();
+      
+      // Convert SEED_BOTS to match Firebase bot format
+      const seedBotsFormatted = SEED_BOTS.map(bot => ({
+        id: bot.id,
+        botName: bot.name,
+        authorName: bot.author,
+        description: bot.description,
+        createdAt: bot.createdAt,
+        workspaceState: bot.workspaceData
+      }));
+
+      setBots([...firebaseBots, ...seedBotsFormatted]);
     } catch (e) {
       console.error(e);
     } finally {

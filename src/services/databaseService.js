@@ -3,7 +3,7 @@
 
 const STORAGE_KEY = 'build_a_bot_gallery';
 
-const SEED_BOTS = [
+export const SEED_BOTS = [
   {
     id: 'seed_1',
     name: 'Người Ngoài Hành Tinh',
